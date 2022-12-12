@@ -1,2 +1,7 @@
 # Yahtzee
-NSI project #2
+
+- [ ] _(for unchecked checkbox)_
+- [x] _(for checked checkbox)_
+
+Tasks:
+
