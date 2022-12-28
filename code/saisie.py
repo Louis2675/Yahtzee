@@ -1,0 +1,1 @@
+#Ce fichier sert a contenir le module de gestion des entrees, il contient les fonctions de saisie (protegee)
