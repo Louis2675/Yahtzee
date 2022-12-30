@@ -19,7 +19,3 @@ def afficher_des(L): # Fonction qui affiche la main du joueur
     print(41*"-")
 
 
-lancer_des(main)
-print(main)
-afficher_des(main)
-
