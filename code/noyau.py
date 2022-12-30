@@ -42,8 +42,19 @@ def jouer_tour(main, relance): #Procedure qui permet de realiser trois lancers /
             lancer_des(main, relance)
             afficher_des(main)
             cpteur += 1
-
-            
-
-jouer_tour(main, relance)
         
+def creer_grille():
+    grille = {
+        "Brelan" : -1,
+        "Carré" : -1,
+        "Full" : -1,
+        "Petite-suite" : -1,
+        "Grande-suite" : -1,
+        "Yahtzee" : -1,
+        "Chance" : -1
+    }
+    for i in range(0, 6):
+        grille.update({"{}".format(i+1) : -1})
+        print(grille)
+
+creer_grille()
