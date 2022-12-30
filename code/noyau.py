@@ -27,19 +27,18 @@ def lancer_des(main, relance):
             if relance[k - 1] == 1:
                 main[k - 1] = generer_lancer()
 
-def jouer_tour(main, relance): 
+def jouer_tour(main, relance): #Procedure qui permet de realiser trois lancers / tours
     cpteur = 1
-    while cpteur <= 3: 
-        if cpteur == 1:
-            relance = [0,0,0,0,0]
+    while cpteur <= 3:  #Trois lancers
+        if cpteur == 1: 
+            relance = [0,0,0,0,0] # Premier lancer, pas de relances dispoibles, tous les des sont donc lances 
             lancer_des(main, relance)
-            print("Lancer 1 terminé : ")
             afficher_des(main)
             cpteur += 1
         if cpteur == 2 or cpteur == 3:
             relance = choisir_des()
-            if relance == [0,0,0,0,0]:
-                relance = [2,2,2,2,2]
+            if relance == [0,0,0,0,0]: # Si aucune relance 
+                relance = [2,2,2,2,2] # Mise des relances a 2 pour ne pas relancer la totalité des dés
             lancer_des(main, relance)
             afficher_des(main)
             cpteur += 1

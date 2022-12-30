@@ -1,7 +1,7 @@
-relance = [0, 0, 0, 0, 0]
+# relance = [0, 0, 0, 0, 0]
 
-if relance == [0, 0, 0, 0, 0]:
-    print("true")
+# if relance == [0, 0, 0, 0, 0]:
+#     print("true")
 
 # relance["d{}".format(a)] = 1
 # print(relance)
