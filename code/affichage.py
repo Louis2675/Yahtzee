@@ -1,5 +1,4 @@
 #Ce fichier contient les modules de gestion des sorties (affichage du programme), il contient la ou les procedures d'affichage
-from noyau import *
 
 def afficher_des(L): # Fonction qui affiche la main du joueur 
     print('''
@@ -17,5 +16,4 @@ def afficher_des(L): # Fonction qui affiche la main du joueur
         print(L[i - 1], end="   |   ")
     print("")
     print(41*"-")
-
 
