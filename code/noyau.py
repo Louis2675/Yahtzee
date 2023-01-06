@@ -42,6 +42,8 @@ def jouer_tour(main, relance): #Procedure qui permet de realiser trois lancers /
             lancer_des(main, relance)
             afficher_des(main)
             cpteur += 1
+
+
         
 def creer_grille():
     grille = {
@@ -54,7 +56,7 @@ def creer_grille():
         "Chance" : -1
     }
     for i in range(0, 6):
-        grille.update({"{}".format(i+1) : -1})
+        grille["{}".format(i + 1)] = -1
         print(grille)
 
 creer_grille()
