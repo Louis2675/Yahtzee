@@ -17,5 +17,3 @@ def afficher_des(L): # Fonction qui affiche la main du joueur
         print(L[i - 1], end="   |   ")
     print("")
     print(41*"-")
-
-    
