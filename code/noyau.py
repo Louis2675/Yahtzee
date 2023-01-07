@@ -1,7 +1,7 @@
 #Ce fichier sert a contenir les fonctions et procedures necessaires pour le bon fonctionnement du jeu.
 from random import randint
 from saisie import choisir_des
-from affichage import afficher_des
+from affichage import afficher_des, afficher_grille
 
 def generer_lancer(): #Fonction qui retourne un nombre aleatoire entre 1 et 6
     return randint(1,6)
@@ -45,8 +45,9 @@ def jouer_tour(main, relance): #Procedure qui permet de realiser trois lancers /
 
 
         
-def creer_grille():
+def creer_grille(): # Initialise la grille pour les contrats - par defaut aucun contrat n'est rempli. on definira la grille d'une personne avec joueur1 = creer_grille() / joueur2 = creer_grille()
     grille = {
+        "Bonus" : "n", # Valeur de bonus = "n" si bonus non attribue et bonus = "y" si attribue.
         "Brelan" : -1,
         "Carré" : -1,
         "Full" : -1,
@@ -57,6 +58,7 @@ def creer_grille():
     }
     for i in range(0, 6):
         grille["{}".format(i + 1)] = -1
-        print(grille)
+    return grille
 
-creer_grille()
+grille = creer_grille()
+afficher_grille(grille)
