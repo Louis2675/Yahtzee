@@ -46,18 +46,16 @@ def jouer_tour(main, relance): #Procedure qui permet de realiser trois lancers /
 
         
 def creer_grille(): # Initialise la grille pour les contrats - par defaut aucun contrat n'est rempli. on definira la grille d'une personne avec joueur1 = creer_grille() / joueur2 = creer_grille()
-    grille = {
-        "Bonus" : "n", # Valeur de bonus = "n" si bonus non attribue et bonus = "y" si attribue.
-        "Brelan" : -1,
-        "Carré" : -1,
-        "Full" : -1,
-        "Petite-suite" : -1,
-        "Grande-suite" : -1,
-        "Yahtzee" : -1,
-        "Chance" : -1
-    }
+    grille = {}
     for i in range(0, 6):
         grille["{}".format(i + 1)] = -1
+    grille["Brelan"] = -1
+    grille["Carré"] = -1
+    grille["Full"] = -1
+    grille["Petite suite"] = -1
+    grille["Grande suite"] = -1
+    grille["Yahtzee"] = -1
+    grille["Chance"] = -1
     return grille
 
 grille = creer_grille()
