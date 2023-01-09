@@ -15,3 +15,12 @@ def choisir_des(): # mise en place du systeme de relances. Un dé est relance si
             return relance
         else:
             print("Mauvaise entree, veuillez recommencer.")
+
+def choisir_contrat(grille): 
+    cpt = 0 
+    while cpt == 0:
+        a = input("Chosir le contrat que vous voulez remplir (attention a chosir un contrat valide) : ")
+        if a.lower() in grille.keys():
+            cpt += 1         
+        else:
+            print("Entrée incorrecte, veuillez réessayer")

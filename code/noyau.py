@@ -1,6 +1,6 @@
 #Ce fichier sert a contenir les fonctions et procedures necessaires pour le bon fonctionnement du jeu.
 from random import randint
-from saisie import choisir_des
+from saisie import choisir_des, choisir_contrat
 from affichage import afficher_des, afficher_grille
 
 def generer_lancer(): #Fonction qui retourne un nombre aleatoire entre 1 et 6
@@ -49,14 +49,16 @@ def creer_grille(): # Initialise la grille pour les contrats - par defaut aucun 
     grille = {}
     for i in range(0, 6):
         grille["{}".format(i + 1)] = -1
-    grille["Brelan"] = -1
-    grille["Carré"] = -1
-    grille["Full"] = -1
-    grille["Petite suite"] = -1
-    grille["Grande suite"] = -1
-    grille["Yahtzee"] = -1
-    grille["Chance"] = -1
+    grille["brelan"] = -1
+    grille["carré"] = -1
+    grille["full"] = -1
+    grille["petite suite"] = -1
+    grille["grande suite"] = -1
+    grille["yahtzee"] = -1
+    grille["chance"] = -1
     return grille
 
 grille = creer_grille()
 afficher_grille(grille)
+
+choisir_contrat(grille)
