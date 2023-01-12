@@ -69,7 +69,7 @@ def somme_totale(main): # Realise la somme des dés de la main
         total = total + main[i]
     return total
 
-main = [1, 3, 4, 4, 4,]
+main = [4, 4, 4, 4, 4,]
 
 def est_brelan(main):
     i = 1
@@ -92,3 +92,14 @@ def est_carre(main):
             est_carre = False 
             i = i + 1
     return est_carre
+
+def est_yahtzee(main):
+    i = 1
+    while i < 7:
+        if main.count(i) >= 5:
+            est_yahtzee = True
+            i = 7
+        else: 
+            est_yahtzee = False 
+            i = i + 1
+    return est_yahtzee
