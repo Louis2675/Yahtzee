@@ -68,3 +68,16 @@ def somme_totale(main): # Realise la somme des dés de la main
     for i in range(0, len(main)):
         total = total + main[i]
     return total
+
+main = [1, 3, 4, 4, 4,]
+
+def est_brelan(main):
+    i = 1
+    while i < 7:
+        if main.count(i) >= 3:
+            est_brelan = True
+            i = 7
+        else: 
+            est_brelan = False 
+            i = i + 1
+    return est_brelan
