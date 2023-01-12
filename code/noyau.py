@@ -58,7 +58,13 @@ def creer_grille(): # Initialise la grille pour les contrats - par defaut aucun 
     grille["chance"] = -1
     return grille
 
-grille = creer_grille()
-afficher_grille(grille)
+# grille = creer_grille()
+# afficher_grille(grille)
 
-choisir_contrat(grille)
+# choisir_contrat(grille)
+
+def somme_totale(main): # Realise la somme des dés de la main
+    total = 0
+    for i in range(0, len(main)):
+        total = total + main[i]
+    return total
