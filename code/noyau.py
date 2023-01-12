@@ -81,3 +81,14 @@ def est_brelan(main):
             est_brelan = False 
             i = i + 1
     return est_brelan
+
+def est_carre(main):
+    i = 1
+    while i < 7:
+        if main.count(i) >= 4:
+            est_carre = True
+            i = 7
+        else: 
+            est_carre = False 
+            i = i + 1
+    return est_carre
