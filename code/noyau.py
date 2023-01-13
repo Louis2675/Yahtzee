@@ -42,9 +42,7 @@ def jouer_tour(main, relance): #Procedure qui permet de realiser trois lancers /
             lancer_des(main, relance)
             afficher_des(main)
             cpteur += 1
-
-
-        
+       
 def creer_grille(): # Initialise la grille pour les contrats - par defaut aucun contrat n'est rempli. on definira la grille d'une personne avec joueur1 = creer_grille() / joueur2 = creer_grille()
     grille = {}
     for i in range(0, 6):
@@ -69,37 +67,78 @@ def somme_totale(main): # Realise la somme des dés de la main
         total = total + main[i]
     return total
 
-main = [4, 4, 4, 4, 4,]
-
 def est_brelan(main):
-    i = 1
-    while i < 7:
-        if main.count(i) >= 3:
-            est_brelan = True
-            i = 7
-        else: 
-            est_brelan = False 
-            i = i + 1
+    cpt1 = 0
+    cpt2 = 0
+    cpt3 = 0
+    cpt4 = 0
+    cpt5 = 0
+    cpt6 = 0
+    for i in range(0, 5):
+        if main[i] == 1:
+            cpt1 = cpt1 + 1
+        if main[i] == 2:
+            cpt2 = cpt2 + 1
+        if main[i] == 3:
+            cpt3 = cpt3 + 1
+        if main[i] == 4:
+            cpt4 = cpt4 + 1
+        if main[i] == 5:
+            cpt5 = cpt5 + 1
+        if main[i] == 6:
+            cpt6 = cpt6 + 6
+    if cpt1 >= 3 or cpt2 >= 3 or cpt3 >= 3 or cpt4 >= 3 or cpt5 >= 3 or cpt6 >= 3: est_brelan = True
+    else: est_brelan = False
     return est_brelan
 
 def est_carre(main):
-    i = 1
-    while i < 7:
-        if main.count(i) >= 4:
-            est_carre = True
-            i = 7
-        else: 
-            est_carre = False 
-            i = i + 1
+    cpt1 = 0
+    cpt2 = 0
+    cpt3 = 0
+    cpt4 = 0
+    cpt5 = 0
+    cpt6 = 0
+    for i in range(0, 5):
+        if main[i] == 1:
+            cpt1 = cpt1 + 1
+        if main[i] == 2:
+            cpt2 = cpt2 + 1
+        if main[i] == 3:
+            cpt3 = cpt3 + 1
+        if main[i] == 4:
+            cpt4 = cpt4 + 1
+        if main[i] == 5:
+            cpt5 = cpt5 + 1
+        if main[i] == 6:
+            cpt6 = cpt6 + 6
+    if cpt1 >= 4 or cpt2 >= 4 or cpt3 >= 4 or cpt4 >= 4 or cpt5 >= 4 or cpt6 >= 4: est_carre = True
+    else: est_carre = False
     return est_carre
 
 def est_yahtzee(main):
-    i = 1
-    while i < 7:
-        if main.count(i) >= 5:
-            est_yahtzee = True
-            i = 7
-        else: 
-            est_yahtzee = False 
-            i = i + 1
+    cpt1 = 0
+    cpt2 = 0
+    cpt3 = 0
+    cpt4 = 0
+    cpt5 = 0
+    cpt6 = 0
+    for i in range(0, 5):
+        if main[i] == 1:
+            cpt1 = cpt1 + 1
+        if main[i] == 2:
+            cpt2 = cpt2 + 1
+        if main[i] == 3:
+            cpt3 = cpt3 + 1
+        if main[i] == 4:
+            cpt4 = cpt4 + 1
+        if main[i] == 5:
+            cpt5 = cpt5 + 1
+        if main[i] == 6:
+            cpt6 = cpt6 + 6
+    if cpt1 >= 5 or cpt2 >= 5 or cpt3 >= 5 or cpt4 >= 5 or cpt5 >= 5 or cpt6 >= 5: est_yahtzee = True
+    else: est_yahtzee = False
     return est_yahtzee
+
+print("est_brelan : ",est_brelan(main))
+print("est_carre : ",est_carre(main))
+print("est_yahtzee : ",est_yahtzee(main))
