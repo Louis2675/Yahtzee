@@ -80,25 +80,28 @@ def est_brelan(main):
     return est_brelan
 
 def est_carre(main):
-    est_brelan = False
+    est_carre = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
         cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
     for k in range(0, 5): 
         if cpt[k] >= 4: # Verifier si une des valeurs est brelan
-            est_brelan = True
-    return est_brelan
+            est_carre = True
+    return est_carre
 
 def est_yahtzee(main):
-    est_brelan = False
+    est_yahtzee = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
         cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
     for k in range(0, 5): 
         if cpt[k] >= 5: # Verifier si une des valeurs est brelan
-            est_brelan = True
-    return est_brelan
+            est_yahtzee = True
+    return est_yahtzee
 
-print("est_brelan : ",est_brelan(main))
-print("est_carre : ",est_carre(main))
-print("est_yahtzee : ",est_yahtzee(main))
+def est_petite_suite(main):
+    cpt = [0, 0, 0, 0, 0]
+    for i in range(0, 5):
+        cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
+        print(cpt)
+
