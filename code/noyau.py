@@ -115,15 +115,41 @@ def est_full(main):
 
 
 def est_petite_suite(main):
-    cpt = [0, 0, 0, 0, 0]
-    for i in range(0, 5):
-        cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
-        print(cpt)
+    trier_des(main)
+    k = 1
+    j = 2
+    while k < 4: # Pour les quatres premiers dés
+        if main[k] - 1 == main[k - 1]: # Si element precedent vaut valeur element actuel moins 1 
+            est_petite_suite = True
+            k = k + 1 # Verifier l'element suivant
+        else: 
+            est_petite_suite = False
+            k = 4 # Stopper, forcement pas une suite
+    if est_petite_suite == True:
+            return est_petite_suite
+    else:
+        while j < 5: # Ainsi, on fait de meme pour les quatres derniers dés
+            if main[j] - 1 == main[j - 1]:
+                est_petite_suite = True
+                j = j + 1
+            else:
+                est_petite_suite = False
+                j = 5  
+    return est_petite_suite
 
 
 
 def est_grande_suite(main):
-    return False
+    trier_des(main)
+    k = 1
+    while k < 5: # Pour toute la main
+        if main[k] - 1 == main[k - 1]: # Si element precedent vaut valeur element actuel moins 1
+            est_grande_suite = True
+            k = k + 1 # On verifie pour le prochain element 
+        else: 
+            est_grande_suite = False
+            k = 5 # Stopper, forcement pas une liste
+    return est_grande_suite
 
 
 
@@ -141,8 +167,3 @@ def est_yahtzee(main):
 
 def valider_contrat():
     return False
-
-
-
-main = [0, 0, 0, 0, 0]
-relance = [0, 0, 0, 0, 0]
