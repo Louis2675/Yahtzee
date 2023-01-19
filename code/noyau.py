@@ -3,7 +3,8 @@ from random import randint
 from saisie import choisir_des, choisir_contrat
 from affichage import afficher_des, afficher_grille
 
-
+main = [0,0,0,0,0]
+relance = [0,0,0,0,0]
 
 def generer_lancer(): #Fonction qui retourne un nombre aleatoire entre 1 et 6
     return randint(1,6)
@@ -57,6 +58,7 @@ def creer_grille(): # Initialise la grille pour les contrats - par defaut aucun 
     grille["grande suite"] = -1
     grille["yahtzee"] = -1
     grille["chance"] = -1
+    return grille
 
 
 
@@ -68,37 +70,41 @@ def somme_totale(main): # Realise la somme des dés de la main
 
 
 
-def somme_valeur(main):
-    return False
+def somme_valeur(main, n):
+    somme_valeur = 0    
+    for i in range(0, 5):
+        if main[i] == n:
+            somme_valeur = somme_valeur + n
+    return somme_valeur
 
 
 
 def est_brelan(main):
-    est_brelan = False
+    brelan = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
         cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
     for k in range(0, 5): 
         if cpt[k] >= 3: # Verifier si une des valeurs est brelan
-            est_brelan = True
-    return est_brelan
+            brelan = True
+    return brelan
 
 
 
 def est_carre(main):
-    est_carre = False
+    carre = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
         cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
     for k in range(0, 5): 
         if cpt[k] >= 4: # Verifier si une des valeurs est brelan
-            est_carre = True
-    return est_carre
+            carre = True
+    return carre
 
 
 
 def est_full(main):
-    est_full = False
+    full = False
     cpt = [0, 0, 0, 0, 0, 0]
     compteur = [0, 0]
     for i in range(0, 5):
@@ -108,41 +114,76 @@ def est_full(main):
             compteur[0] = 1
         if cpt[j] == 2:
             compteur[1] = 1
+        if cpt[j] == 5:
+            compteur[0] = 1
+            compteur[1] = 1
     if compteur == [1, 1]:
-        est_full = True
-    return est_full
+        full = True
+    return full
 
 
 
 def est_petite_suite(main):
-    cpt = [0, 0, 0, 0, 0]
-    for i in range(0, 5):
-        cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
-        print(cpt)
+    trier_des(main)
+    k = 1
+    j = 2
+    while k < 4: # Pour les quatres premiers dés
+        if main[k] - 1 == main[k - 1]: # Si element precedent vaut valeur element actuel moins 1 
+            petite_suite = True
+            k = k + 1 # Verifier l'element suivant
+        else: 
+            petite_suite = False
+            k = 4 # Stopper, forcement pas une suite
+    if petite_suite == True:
+            return petite_suite
+    else:
+        while j < 5: # Ainsi, on fait de meme pour les quatres derniers dés
+            if main[j] - 1 == main[j - 1]:
+                petite_suite = True
+                j = j + 1
+            else:
+                petite_suite = False
+                j = 5  
+    return petite_suite
 
 
 
 def est_grande_suite(main):
-    return False
+    trier_des(main)
+    k = 1
+    while k < 5: # Pour toute la main
+        if main[k] - 1 == main[k - 1]: # Si element precedent vaut valeur element actuel moins 1
+            grande_suite = True
+            k = k + 1 # On verifie pour le prochain element 
+        else: 
+            grande_suite = False
+            k = 5 # Stopper, forcement pas une liste
+    return grande_suite
 
 
 
 def est_yahtzee(main):
-    est_yahtzee = False
+    yahtzee = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
         cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
     for k in range(0, 5): 
         if cpt[k] >= 5: # Verifier si une des valeurs est brelan
-            est_yahtzee = True
-    return est_yahtzee
+            yahtzee = True
+    return yahtzee
 
+grille = creer_grille()
+main = [1,1,1,3,3]
 
+def valider_contrat(grille):
+    contrat = choisir_contrat(grille)
+    if contrat == "brelan":
+        brelan = est_brelan(main)
+        if brelan == True:
+            grille["brelan"] = somme_totale(main)
+        else: grille["brelan"] = 0
+    if contrat 
+    return grille
 
-def valider_contrat():
-    return False
-
-
-
-main = [0, 0, 0, 0, 0]
-relance = [0, 0, 0, 0, 0]
+grille = valider_contrat(grille)
+afficher_grille(grille)
