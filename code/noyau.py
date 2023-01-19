@@ -185,4 +185,29 @@ def valider_contrat(grille, mains_joueurs):
         if carre == True:
             grille["carré"] = somme_totale(mains_joueurs)
         else: grille["carré"] = 0
+    if contrat == "full":
+        full = est_full(mains_joueurs)
+        if full == True:
+            grille["full"] = 25
+        else: grille["full"] = 0
+    if contrat == "petite suite":
+        petite_suite = est_petite_suite(mains_joueurs)
+        if petite_suite == True:
+            grille["petite suite"] = 30
+        else: grille["petite suite"] = 0
+    if contrat == "grande suite":
+        grande_suite = est_grande_suite(mains_joueurs)
+        if grande_suite == True:
+            grille["grande suite"] = 40
+        else: grille["grande suite"] = 0
+    if contrat == "yahtzee":
+        yahtzee = est_yahtzee(mains_joueurs)
+        if yahtzee == True:
+            grille["yahtzee"] = 50
+        else: grille["yahtzee"] = 0
+    if contrat == "chance":
+        grille["chance"] = somme_totale(mains_joueurs)
+    for i in range(1, 7):
+        if contrat == str(i):
+            grille[str(i)] = somme_valeur(mains_joueurs, i)
     return grille
