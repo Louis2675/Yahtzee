@@ -3,45 +3,44 @@ from random import randint
 from saisie import choisir_des, choisir_contrat
 from affichage import afficher_des, afficher_grille
 
-main = [0,0,0,0,0]
-relance = [0,0,0,0,0]
+
 
 def generer_lancer(): #Fonction qui retourne un nombre aleatoire entre 1 et 6
     return randint(1,6)
 
 
 
-def trier_des(main): #Met les elements de la liste dans l'ordre croissant 
-    for i in range(len(main)):             # boucle pour parcourir toute la liste : i donne la position (en partant de la fin) à laquelle on fait remonter "l'élément bulle"
-        for j in range(len(main)-i-1):     # boucle pour remonter le plus grand élément de la sous-liste L[0:i]
-            if main[j] > main[j+1]:           # on échange deux éléments consécutifs s'ils ne sont pas dans le bon ordre
-                aux = main[j]
-                main[j] = main[j+1]
-                main[j+1] = aux
+def trier_des(mains_joueurs): #Met les elements de la liste dans l'ordre croissant 
+    for i in range(len(mains_joueurs)):             # boucle pour parcourir toute la liste : i donne la position (en partant de la fin) à laquelle on fait remonter "l'élément bulle"
+        for j in range(len(mains_joueurs)-i-1):     # boucle pour remonter le plus grand élément de la sous-liste L[0:i]
+            if mains_joueurs[j] > mains_joueurs[j+1]:           # on échange deux éléments consécutifs s'ils ne sont pas dans le bon ordre
+                aux = mains_joueurs[j]
+                mains_joueurs[j] = mains_joueurs[j+1]
+                mains_joueurs[j+1] = aux
 
 
 
-def lancer_des(main, relance):
-    if main == [0, 0, 0, 0, 0]:
-        for i in range(1, len(main)+1): # Attribue un nombre entre 1 et 6 pour chaque element du dictionnaire
-            main[i - 1] = generer_lancer()
+def lancer_des(mains_joueurs, relance):
+    if mains_joueurs == [0, 0, 0, 0, 0]:
+        for i in range(1, len(mains_joueurs)+1): # Attribue un nombre entre 1 et 6 pour chaque element du dictionnaire
+            mains_joueurs[i - 1] = generer_lancer()
     if relance != [0, 0, 0, 0, 0]: # Si relance non nulle, commencer la procedure
         for j in range(1, len(relance)+1): # Attribuer un nouveau tirage si relance est non nulle
             if relance[j - 1] == 1:
-                main[j - 1] = generer_lancer()
+                mains_joueurs[j - 1] = generer_lancer()
 
 
 
-def jouer_tour(main, relance): #Procedure qui permet de realiser trois lancers / tours
+def jouer_tour(mains_joueurs, relance): #Procedure qui permet de realiser trois lancers / tours
     lancer = 1
     while lancer <= 3:  #Trois lancers
         if lancer == 1:
-            lancer_des(main, relance)
-            afficher_des(main)
+            lancer_des(mains_joueurs, relance)
+            afficher_des(mains_joueurs)
         elif lancer == 2 or lancer == 3:
             choisir_des(relance)
-            lancer_des(main, relance)
-            afficher_des(main)
+            lancer_des(mains_joueurs, relance)
+            afficher_des(mains_joueurs)
         relance = [0, 0, 0, 0, 0]
         lancer = lancer + 1
 
@@ -62,28 +61,28 @@ def creer_grille(): # Initialise la grille pour les contrats - par defaut aucun 
 
 
 
-def somme_totale(main): # Realise la somme des dés de la main
+def somme_totale(mains_joueurs): # Realise la somme des dés de la main
     total = 0
-    for i in range(0, len(main)):
-        total = total + main[i]
+    for i in range(0, len(mains_joueurs)):
+        total = total + mains_joueurs[i]
     return total
 
 
 
-def somme_valeur(main, n):
+def somme_valeur(mains_joueurs, n):
     somme_valeur = 0    
     for i in range(0, 5):
-        if main[i] == n:
+        if mains_joueurs[i] == n:
             somme_valeur = somme_valeur + n
     return somme_valeur
 
 
 
-def est_brelan(main):
+def est_brelan(mains_joueurs):
     brelan = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
-        cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
+        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
     for k in range(0, 5): 
         if cpt[k] >= 3: # Verifier si une des valeurs est brelan
             brelan = True
@@ -91,11 +90,11 @@ def est_brelan(main):
 
 
 
-def est_carre(main):
+def est_carre(mains_joueurs):
     carre = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
-        cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
+        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
     for k in range(0, 5): 
         if cpt[k] >= 4: # Verifier si une des valeurs est brelan
             carre = True
@@ -103,12 +102,12 @@ def est_carre(main):
 
 
 
-def est_full(main):
+def est_full(mains_joueurs):
     full = False
     cpt = [0, 0, 0, 0, 0, 0]
     compteur = [0, 0]
     for i in range(0, 5):
-        cpt[main[i] - 1] = cpt[main[i] - 1] + 1
+        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1
     for j in range(0, 5):
         if cpt[j] == 3:
             compteur[0] = 1
@@ -123,12 +122,12 @@ def est_full(main):
 
 
 
-def est_petite_suite(main):
-    trier_des(main)
+def est_petite_suite(mains_joueurs):
+    trier_des(mains_joueurs)
     k = 1
     j = 2
     while k < 4: # Pour les quatres premiers dés
-        if main[k] - 1 == main[k - 1]: # Si element precedent vaut valeur element actuel moins 1 
+        if mains_joueurs[k] - 1 == mains_joueurs[k - 1]: # Si element precedent vaut valeur element actuel moins 1 
             petite_suite = True
             k = k + 1 # Verifier l'element suivant
         else: 
@@ -138,7 +137,7 @@ def est_petite_suite(main):
             return petite_suite
     else:
         while j < 5: # Ainsi, on fait de meme pour les quatres derniers dés
-            if main[j] - 1 == main[j - 1]:
+            if mains_joueurs[j] - 1 == mains_joueurs[j - 1]:
                 petite_suite = True
                 j = j + 1
             else:
@@ -148,11 +147,11 @@ def est_petite_suite(main):
 
 
 
-def est_grande_suite(main):
-    trier_des(main)
+def est_grande_suite(mains_joueurs):
+    trier_des(mains_joueurs)
     k = 1
     while k < 5: # Pour toute la main
-        if main[k] - 1 == main[k - 1]: # Si element precedent vaut valeur element actuel moins 1
+        if mains_joueurs[k] - 1 == mains_joueurs[k - 1]: # Si element precedent vaut valeur element actuel moins 1
             grande_suite = True
             k = k + 1 # On verifie pour le prochain element 
         else: 
@@ -162,32 +161,28 @@ def est_grande_suite(main):
 
 
 
-def est_yahtzee(main):
+def est_yahtzee(mains_joueurs):
     yahtzee = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
-        cpt[main[i] - 1] = cpt[main[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
+        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
     for k in range(0, 5): 
         if cpt[k] >= 5: # Verifier si une des valeurs est brelan
             yahtzee = True
     return yahtzee
 
-grille = creer_grille()
-main = [1,1,1,1,3]
 
-def valider_contrat(grille):
+
+def valider_contrat(grille, mains_joueurs):
     contrat = choisir_contrat(grille)
     if contrat == "brelan":
-        brelan = est_brelan(main)
+        brelan = est_brelan(mains_joueurs)
         if brelan == True:
-            grille["brelan"] = somme_totale(main)
+            grille["brelan"] = somme_totale(mains_joueurs)
         else: grille["brelan"] = 0
     if contrat == "carré":
-        carre = est_carre(main)
+        carre = est_carre(mains_joueurs)
         if carre == True:
-            grille["carré"] = somme_totale(main)
+            grille["carré"] = somme_totale(mains_joueurs)
         else: grille["carré"] = 0
     return grille
-
-grille = valider_contrat(grille)
-afficher_grille(grille)
