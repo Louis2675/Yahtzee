@@ -34,3 +34,4 @@ _   _                             _             _
             print("Contrat n° {} ({}) : {}".format(i, key, value))
         else: 
             print("Contrat n° {} ({}) :".format(i, key))
+

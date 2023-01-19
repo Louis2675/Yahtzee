@@ -173,7 +173,7 @@ def est_yahtzee(main):
     return yahtzee
 
 grille = creer_grille()
-main = [1,1,1,3,3]
+main = [1,1,1,1,3]
 
 def valider_contrat(grille):
     contrat = choisir_contrat(grille)
@@ -182,7 +182,11 @@ def valider_contrat(grille):
         if brelan == True:
             grille["brelan"] = somme_totale(main)
         else: grille["brelan"] = 0
-    if contrat 
+    if contrat == "carré":
+        carre = est_carre(main)
+        if carre == True:
+            grille["carré"] = somme_totale(main)
+        else: grille["carré"] = 0
     return grille
 
 grille = valider_contrat(grille)
