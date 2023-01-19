@@ -3,12 +3,8 @@ from random import randint
 from saisie import choisir_des, choisir_contrat
 from affichage import afficher_des, afficher_grille
 
-main = [0,0,0,0,0]
-relance = [0,0,0,0,0]
-
 def generer_lancer(): #Fonction qui retourne un nombre aleatoire entre 1 et 6
     return randint(1,6)
-
 
 
 def trier_des(main): #Met les elements de la liste dans l'ordre croissant 
@@ -173,9 +169,9 @@ def est_yahtzee(main):
     return yahtzee
 
 grille = creer_grille()
-main = [1,1,1,1,3]
 
-def valider_contrat(grille):
+main = [1,2,3,2,6]
+def valider_contrat(grille, main):
     contrat = choisir_contrat(grille)
     if contrat == "brelan":
         brelan = est_brelan(main)
@@ -187,7 +183,34 @@ def valider_contrat(grille):
         if carre == True:
             grille["carré"] = somme_totale(main)
         else: grille["carré"] = 0
+    if contrat == "full":
+        full = est_full(main)
+        if full == True:
+            grille["full"] = 25
+        else: grille["full"] = 0
+    if contrat == "petite suite":
+        petite_suite = est_petite_suite(main)
+        if petite_suite == True:
+            grille["petite suite"] = 30
+        else: grille["petite suite"] = 0
+    if contrat == "grande suite":
+        grande_suite = est_grande_suite(main)
+        if grande_suite == True:
+            grille["grande suite"] = 40
+        else: grille["grande suite"] = 0
+    if contrat == "yahtzee":
+        yahtzee = est_yahtzee(main)
+        if yahtzee == True:
+            grille["yahtzee"] = 50
+        else: grille["yahtzee"] = 0
+    if contrat == "chance":
+        grille["chance"] = somme_totale(main)
+    for i in range(1, 7):
+        if contrat == str(i):
+            grille[str(i)] = somme_valeur(main, i)
     return grille
+    
 
-grille = valider_contrat(grille)
+grille = valider_contrat(grille, main)
 afficher_grille(grille)
+

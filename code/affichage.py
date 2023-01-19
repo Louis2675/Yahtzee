@@ -20,7 +20,7 @@ def afficher_des(L): # Fonction qui affiche la main du joueur
 
 def afficher_grille(grille):
     print(""" 
-_   _                             _             _       
+ _   _                             _             _       
 | | | |                           | |           | |      
 | | | | ___  ___    ___ ___  _ __ | |_ _ __ __ _| |_ ___ 
 | | | |/ _ \/ __|  / __/ _ \| '_ \| __| '__/ _` | __/ __|
