@@ -1,7 +1,13 @@
 #Ce fichier sert a contenir les fonctions et procedures necessaires pour le bon fonctionnement du jeu.
 from random import randint
 from saisie import choisir_des, choisir_contrat
-from affichage import afficher_des, afficher_grille
+from affichage import afficher_des
+
+
+
+def est_pair(n):
+    if n > 0:
+        return n % 2 == 0
 
 
 
@@ -36,10 +42,13 @@ def jouer_tour(mains_joueurs, relance): #Procedure qui permet de realiser trois 
     while lancer <= 3:  #Trois lancers
         if lancer == 1:
             lancer_des(mains_joueurs, relance)
+            trier_des(mains_joueurs)
             afficher_des(mains_joueurs)
         elif lancer == 2 or lancer == 3:
             choisir_des(relance)
             lancer_des(mains_joueurs, relance)
+            trier_des(mains_joueurs)
+            print()
             afficher_des(mains_joueurs)
         relance = [0, 0, 0, 0, 0]
         lancer = lancer + 1
@@ -113,7 +122,7 @@ def est_full(mains_joueurs):
             compteur[0] = 1
         if cpt[j] == 2:
             compteur[1] = 1
-        if cpt[j] == 5:
+        elif cpt[j] == 5:
             compteur[0] = 1
             compteur[1] = 1
     if compteur == [1, 1]:
@@ -179,32 +188,38 @@ def valider_contrat(grille, mains_joueurs):
         brelan = est_brelan(mains_joueurs)
         if brelan == True:
             grille["brelan"] = somme_totale(mains_joueurs)
-        else: grille["brelan"] = 0
+        else:
+            grille["brelan"] = 0
     if contrat == "carré":
         carre = est_carre(mains_joueurs)
         if carre == True:
             grille["carré"] = somme_totale(mains_joueurs)
-        else: grille["carré"] = 0
+        else:
+            grille["carré"] = 0
     if contrat == "full":
         full = est_full(mains_joueurs)
         if full == True:
             grille["full"] = 25
-        else: grille["full"] = 0
+        else:
+            grille["full"] = 0
     if contrat == "petite suite":
         petite_suite = est_petite_suite(mains_joueurs)
         if petite_suite == True:
             grille["petite suite"] = 30
-        else: grille["petite suite"] = 0
+        else:
+            grille["petite suite"] = 0
     if contrat == "grande suite":
         grande_suite = est_grande_suite(mains_joueurs)
         if grande_suite == True:
             grille["grande suite"] = 40
-        else: grille["grande suite"] = 0
+        else:
+            grille["grande suite"] = 0
     if contrat == "yahtzee":
         yahtzee = est_yahtzee(mains_joueurs)
         if yahtzee == True:
             grille["yahtzee"] = 50
-        else: grille["yahtzee"] = 0
+        else:
+            grille["yahtzee"] = 0
     if contrat == "chance":
         grille["chance"] = somme_totale(mains_joueurs)
     for i in range(1, 7):
