@@ -1,7 +1,5 @@
 #Ce fichier sert a contenir le module de gestion des entrees, il contient les fonctions de saisie (protegee)
 
-# Pour la liste relance, les indexes sont comme suivant: relance[0] = dé #0+1
-
 def choisir_des(relance): # mise en place du systeme de relances. Un dé est relance si la valeur de son index dans le dictionnaire est egal a 1.
     sortie = False
     while sortie == False:
