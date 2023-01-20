@@ -183,7 +183,12 @@ def est_yahtzee(mains_joueurs):
 
 
 def valider_contrat(grille, mains_joueurs):
-    contrat = choisir_contrat(grille)
+    compteur = 0
+    while compteur == 0:
+        contrat = choisir_contrat(grille)
+        if grille[contrat] != -1:
+            print("Contrat deja rempli, veuillez en renseigner un autre...")
+        else: compteur = 1
     if contrat == "brelan":
         brelan = est_brelan(mains_joueurs)
         if brelan == True:
@@ -226,3 +231,22 @@ def valider_contrat(grille, mains_joueurs):
         if contrat == str(i):
             grille[str(i)] = somme_valeur(mains_joueurs, i)
     return grille
+
+    
+
+def total_grille(grille):
+    somme = 0
+    for key in grille:
+        somme = somme + grille["{}".format(key)]
+    return somme
+
+
+
+def est_bonus(grille):
+    somme = 0
+    for i in range(1, 7):
+        somme = somme + grille["{}".format(i)]
+    if somme >= 63:
+        bonus = True
+    else: bonus = False
+    return bonus
