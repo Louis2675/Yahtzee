@@ -2,6 +2,7 @@
 
 - Demander autorisation pour .lower()
 - Est-ce grave d'avoir la demande de contrat carre avec accent obligatoire
+- Comment on peut rajouter du délai sur l'apparition des infos dans la console
 
 # A faire
 
