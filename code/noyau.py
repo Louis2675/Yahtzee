@@ -187,7 +187,7 @@ def valider_contrat(grille, mains_joueurs):
     while compteur == 0:
         contrat = choisir_contrat(grille)
         if grille[contrat] != -1:
-            print("Contrat deja rempli, veuillez en renseigner un autre...")
+            print("Contrat déja rempli, veuillez en séléctionner un autre...")
         else: compteur = 1
     if contrat == "brelan":
         brelan = est_brelan(mains_joueurs)
