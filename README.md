@@ -7,3 +7,4 @@
 # A faire
 
 - Bien double-check les consignes
+- Mettre total() après l'affichage de la victoire pour éviter le spoil
