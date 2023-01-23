@@ -5,7 +5,7 @@ from affichage import afficher_des
 
 
 
-def est_pair(n):
+def est_pair(n): #Retourne si un nombre est pair ou non
     if n > 0:
         return n % 2 == 0
 
@@ -16,7 +16,7 @@ def generer_lancer(): #Fonction qui retourne un nombre aleatoire entre 1 et 6
 
 
 
-def trier_des(mains_joueurs): #Met les elements de la liste dans l'ordre croissant 
+def trier_des(mains_joueurs): #Met les éléments de la liste dans l'ordre croissant 
     for i in range(len(mains_joueurs)):             # boucle pour parcourir toute la liste : i donne la position (en partant de la fin) à laquelle on fait remonter "l'élément bulle"
         for j in range(len(mains_joueurs)-i-1):     # boucle pour remonter le plus grand élément de la sous-liste L[0:i]
             if mains_joueurs[j] > mains_joueurs[j+1]:           # on échange deux éléments consécutifs s'ils ne sont pas dans le bon ordre
@@ -37,7 +37,7 @@ def lancer_des(mains_joueurs, relance):
 
 
 
-def jouer_tour(mains_joueurs, relance): #Procedure qui permet de realiser trois lancers / tours
+def jouer_tour(mains_joueurs, relance, grille): #Procedure qui permet de realiser trois lancers / tours
     lancer = 1
     while lancer <= 3:  #Trois lancers
         if lancer == 1:
@@ -45,7 +45,7 @@ def jouer_tour(mains_joueurs, relance): #Procedure qui permet de realiser trois 
             trier_des(mains_joueurs)
             afficher_des(mains_joueurs)
         elif lancer == 2 or lancer == 3:
-            choisir_des(relance)
+            choisir_des(relance, grille)
             lancer_des(mains_joueurs, relance)
             trier_des(mains_joueurs)
             print()
@@ -92,8 +92,8 @@ def est_brelan(mains_joueurs):
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
         cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
-    for k in range(0, 5): 
-        if cpt[k] >= 3: # Verifier si une des valeurs est brelan
+    for j in range(0, 6): 
+        if cpt[j] >= 3: # Verifier si une des valeurs est brelan
             brelan = True
     return brelan
 
@@ -104,20 +104,20 @@ def est_carre(mains_joueurs):
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
         cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
-    for k in range(0, 5): 
-        if cpt[k] >= 4: # Verifier si une des valeurs est brelan
+    for j in range(0, 6): 
+        if cpt[j] >= 4: # Verifier si une des valeurs est brelan
             carre = True
     return carre
 
 
 
-def est_full(mains_joueurs):
+def est_full(mains_joueurs): #Fonction qui retourne si une main admet un "full"
     full = False
     cpt = [0, 0, 0, 0, 0, 0]
     compteur = [0, 0]
     for i in range(0, 5):
         cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1
-    for j in range(0, 5):
+    for j in range(0, 6):
         if cpt[j] == 3:
             compteur[0] = 1
         if cpt[j] == 2:
@@ -175,8 +175,8 @@ def est_yahtzee(mains_joueurs):
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
         cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
-    for k in range(0, 5): 
-        if cpt[k] >= 5: # Verifier si une des valeurs est brelan
+    for j in range(0, 6): 
+        if cpt[j] >= 5: # Verifier si une des valeurs est brelan
             yahtzee = True
     return yahtzee
 

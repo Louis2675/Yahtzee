@@ -1,13 +1,20 @@
 #Ce fichier sert a contenir le module de gestion des entrees, il contient les fonctions de saisie (protegee)
+from affichage import afficher_grille
 
-def choisir_des(relance): # mise en place du systeme de relances. Un dé est relance si la valeur de son index dans le dictionnaire est egal a 1.
+
+
+def choisir_des(relance, grille): # mise en place du systeme de relances. Un dé est relance si la valeur de son index dans le dictionnaire est egal a 1.
     sortie = False
     while sortie == False:
-        choix = input("Voulez-vous relancer un dé ? (non pour finir) : ")
+        choix = input("Voulez-vous relancer un dé ? (non pour finir, grille pour afficher votre grille) : ")
         if choix == "1" or choix == "2" or choix == "3" or choix == "4" or choix == "5":
             relance[int(choix) - 1] = 1
         elif choix == "non":
             sortie = True
+        elif choix == "grille":
+            print()
+            afficher_grille(grille)
+            print()
         else:
             print("Mauvaise entrée, veuillez recommencer : ")
 
