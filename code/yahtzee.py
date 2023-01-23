@@ -1,6 +1,7 @@
 #Ce fichier sert a executer pour realiser une partie
 from noyau import jouer_tour, est_pair, creer_grille, valider_contrat, total_grille, est_bonus
 from affichage import afficher_grille, bienvenue, votre_main, vos_contrats, tour_joueur_1, tour_joueur_2, victoire_joueur_1, victoire_joueur_2, egalite, total
+from time import sleep
 
 
 
@@ -67,15 +68,15 @@ if nb_joueurs == 1:
     print("Votre total est de :", total_joueur_1)
     print()
 else:
-    total()
-    print("Le total du joueur 1 est :", total_joueur_1)
-    print()
-    print("Le total du joueur 2 est :", total_joueur_2)
     if total_joueur_1 > total_joueur_2:
         victoire_joueur_1()
     elif total_joueur_2 > total_joueur_1:
         victoire_joueur_2()
     else:
         egalite()
+    total()
+    print("Le total du joueur 1 est :", total_joueur_1)
+    print()
+    print("Le total du joueur 2 est :", total_joueur_2)
 
 print("Bravo !!! N'hésitez pas à rejouer quand vous voulez.")
