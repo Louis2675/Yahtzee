@@ -26,7 +26,7 @@ def trier_des(mains_joueurs): #Met les éléments de la liste dans l'ordre crois
 
 
 
-def lancer_des(mains_joueurs, relance):
+def lancer_des(mains_joueurs, relance): # Fonction qui permet de generer un lancer de 5 dés
     if mains_joueurs == [0, 0, 0, 0, 0]:
         for i in range(1, len(mains_joueurs)+1): # Attribue un nombre entre 1 et 6 pour chaque element du dictionnaire
             mains_joueurs[i - 1] = generer_lancer()
@@ -40,23 +40,23 @@ def lancer_des(mains_joueurs, relance):
 def jouer_tour(mains_joueurs, relance, grille): #Procedure qui permet de realiser trois lancers / tours
     lancer = 1
     while lancer <= 3:  #Trois lancers
-        if lancer == 1:
+        if lancer == 1: # Si c'est le premier lancer on ne proposera pas de relance
             lancer_des(mains_joueurs, relance)
             trier_des(mains_joueurs)
             afficher_des(mains_joueurs)
-        elif lancer == 2 or lancer == 3:
+        elif lancer == 2 or lancer == 3: # Pour les lancers 2 et 3, on demande les dés a relancer puis on lance les dés sélectionnés uniquement 
             choisir_des(relance, grille)
             lancer_des(mains_joueurs, relance)
             trier_des(mains_joueurs)
-            print()
+            print() # Sert a espacer le programme dans le terminal
             afficher_des(mains_joueurs)
-        relance = [0, 0, 0, 0, 0]
+        relance = [0, 0, 0, 0, 0] # On réinitialise la liste des dés a relancer pour le prochain tour 
         lancer = lancer + 1
 
 
 
 def creer_grille(): # Initialise la grille pour les contrats - par defaut aucun contrat n'est rempli. on definira la grille d'une personne avec joueur1 = creer_grille() / joueur2 = creer_grille()
-    grille = {}
+    grille = {} # Si sa valeur est -1, le contrat n'est pas rempli
     for i in range(0, 6):
         grille["{}".format(i + 1)] = -1
     grille["brelan"] = -1
@@ -70,7 +70,7 @@ def creer_grille(): # Initialise la grille pour les contrats - par defaut aucun 
 
 
 
-def somme_totale(mains_joueurs): # Realise la somme des dés de la main
+def somme_totale(mains_joueurs): # Réalise la somme des dés de la main
     total = 0
     for i in range(0, len(mains_joueurs)):
         total = total + mains_joueurs[i]
@@ -78,7 +78,7 @@ def somme_totale(mains_joueurs): # Realise la somme des dés de la main
 
 
 
-def somme_valeur(mains_joueurs, n):
+def somme_valeur(mains_joueurs, n): # Réalise la somme d'un nombre n dans la main (1 ou 2 ou ... ou 6)
     somme_valeur = 0    
     for i in range(0, 5):
         if mains_joueurs[i] == n:
@@ -87,11 +87,11 @@ def somme_valeur(mains_joueurs, n):
 
 
 
-def est_brelan(mains_joueurs):
+def est_brelan(mains_joueurs): # Verifie si la main contient un brelan
     brelan = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
-        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
+        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est présent dans la main
     for j in range(0, 6): 
         if cpt[j] >= 3: # Verifier si une des valeurs est brelan
             brelan = True
@@ -99,11 +99,11 @@ def est_brelan(mains_joueurs):
 
 
 
-def est_carre(mains_joueurs):
+def est_carre(mains_joueurs): # Verifie si la main contient un carré
     carre = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
-        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
+        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est présent dans la main
     for j in range(0, 6): 
         if cpt[j] >= 4: # Verifier si une des valeurs est brelan
             carre = True
@@ -116,17 +116,17 @@ def est_full(mains_joueurs): #Fonction qui retourne si une main admet un "full"
     cpt = [0, 0, 0, 0, 0, 0]
     compteur = [0, 0]
     for i in range(0, 5):
-        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1
+        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est présent dans la main
     for j in range(0, 6):
-        if cpt[j] == 3:
+        if cpt[j] == 3: # Si un nombre est présent 3 fois dans une main, et un autre est présent 2 fois, mets la liste "compteur" à [1,1]
             compteur[0] = 1
         if cpt[j] == 2:
             compteur[1] = 1
-        elif cpt[j] == 5:
+        elif cpt[j] == 5: # Si un nombre est présent 5 fois, mets la liste "compteur" à [1,1]
             compteur[0] = 1
             compteur[1] = 1
-    if compteur == [1, 1]:
-        full = True
+    if compteur == [1, 1]: # Si le compteur est égal à [1,1]
+        full = True # Il y a un full dans la main
     return full
 
 
@@ -174,19 +174,19 @@ def est_yahtzee(mains_joueurs):
     yahtzee = False
     cpt = [0, 0, 0, 0, 0, 0]
     for i in range(0, 5):
-        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est assigne
+        cpt[mains_joueurs[i] - 1] = cpt[mains_joueurs[i] - 1] + 1 # Assigner le nombre de fois qu'un nombre est present dans la main
     for j in range(0, 6): 
-        if cpt[j] >= 5: # Verifier si une des valeurs est brelan
+        if cpt[j] >= 5: # Verifier si une des valeurs est yahtzee
             yahtzee = True
     return yahtzee
 
 
 
-def valider_contrat(grille, mains_joueurs):
+def valider_contrat(grille, mains_joueurs): # Cette fonction calcule et attribue les valeurs aux contrats correspondants, elle verifie egalement l'éligibilité des contrats avant de les remplir
     compteur = 0
-    while compteur == 0:
+    while compteur == 0: # verifie si le contrat n'est pas deja utilisé
         contrat = choisir_contrat(grille)
-        if grille[contrat] != -1:
+        if grille[contrat] != -1: # On verifie tous les contrats un par un
             print("Contrat déja rempli, veuillez en séléctionner un autre...")
         else: compteur = 1
     if contrat == "brelan":
@@ -227,14 +227,14 @@ def valider_contrat(grille, mains_joueurs):
             grille["yahtzee"] = 0
     if contrat == "chance":
         grille["chance"] = somme_totale(mains_joueurs)
-    for i in range(1, 7):
+    for i in range(1, 7): # Pour les contrats de 1 à 6 :
         if contrat == str(i):
             grille[str(i)] = somme_valeur(mains_joueurs, i)
     return grille
 
     
 
-def total_grille(grille):
+def total_grille(grille): # Fonction qui realise le total des valeurs de chacun des elements de la grille
     somme = 0
     for key in grille:
         somme = somme + grille["{}".format(key)]
@@ -242,7 +242,7 @@ def total_grille(grille):
 
 
 
-def est_bonus(grille):
+def est_bonus(grille): # Fonction qui calcule si le total des contrats 1 à 6, si celui la est superieur ou égal a 63 elle retourne vrai sinon faux
     somme = 0
     for i in range(1, 7):
         somme = somme + grille["{}".format(i)]
