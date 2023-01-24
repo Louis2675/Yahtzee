@@ -11,7 +11,7 @@ def est_pair(n): #Retourne si un nombre est pair ou non
 
 
 
-def generer_lancer(): #Fonction qui retourne un nombre aleatoire entre 1 et 6
+def generer_lancer(): #Fonction qui retourne un nombre aléatoire entre 1 et 6
     return randint(1,6)
 
 
