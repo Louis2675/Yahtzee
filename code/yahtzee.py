@@ -1,17 +1,12 @@
 #Ce fichier sert a executer pour realiser une partie
 from noyau import jouer_tour, est_pair, creer_grille, valider_contrat, total_grille, est_bonus
-from affichage import afficher_grille, bienvenue, votre_main, vos_contrats, tour_joueur_1, tour_joueur_2, victoire_joueur_1, victoire_joueur_2, egalite, total
+from affichage import afficher_grille, bienvenue, votre_main, vos_contrats, tour_joueur_1, tour_joueur_2, victoire_joueur_1, victoire_joueur_2, egalite, total, bonus
 from time import sleep
 
 
 
-main_joueur_1 = [0, 0, 0, 0, 0] #Définit la liste de la main du joueur (numéro 1)
-main_joueur_2 = [0, 0, 0, 0, 0]
-mains_joueurs = []
-
 grille_joueur_1 = creer_grille() #Créé et définit la grille du joueur (numéro 1)
 grille_joueur_2 = creer_grille()
-grilles_joueurs = 0
 
 relance = [0, 0, 0, 0, 0]
 nb_tours = 0
@@ -26,7 +21,11 @@ while nb_joueurs != "1" and nb_joueurs != "2":
 
 nb_joueurs = int(nb_joueurs) #Convertit en entier le choix du nombre de joueurs
 
+
+
 while nb_tours != 13 * nb_joueurs: #Tant que le nombre de tours est différent de 13 fois le nombre de joueurs,
+    main_joueur_1 = [0, 0, 0, 0, 0] #Définit la liste de la main du joueur (numéro 1), étant donné qu'il est dans la boucle, ça permet de relancer les dés au tour suivant
+    main_joueur_2 = [0, 0, 0, 0, 0]
     if nb_joueurs == 1: #Si il y a 1 joueur,
         nb_tours = nb_tours + 1 
         mains_joueurs = main_joueur_1 #La liste "mains_joueurs" prend la valeur de la liste de la main du joueur numéro 1
@@ -52,8 +51,6 @@ while nb_tours != 13 * nb_joueurs: #Tant que le nombre de tours est différent d
     print()
     afficher_grille(grilles_joueurs) #Ré-affiche la grille avec le contrat validé
     sleep(2)
-    main_joueur_1 = [0, 0, 0, 0, 0] #Re-définit la liste de la main du joueur numéro 1 pour pouvoir relancer les dés au tour suivant
-    main_joueur_2 = [0, 0, 0, 0, 0]
 
 
 
@@ -62,10 +59,26 @@ total_joueur_2 = total_grille(grille_joueur_2)
 
 
 
+bonus()
 if est_bonus(grille_joueur_1): #Si la fonction "est_bonus" retourne True,
-    total_joueur_1 = total_joueur_1 + 35 #On rajoute le bonus au total du joueur (numéro 1)
-if est_bonus(grille_joueur_2):
+    total_joueur_1 = total_joueur_1 + 35 #On rajoute le bonus au total du joueur numéro 1
+    print("Joueur numéro 1, vous avez reçu un bonus de 35 points !!")
+    print()
+else:
+    print("Joueur numéro 1, vous n'avez pas de bonus de point !")
+    print()
+
+if est_bonus(grille_joueur_2): #Exactement pareil pour le joueur numéro 2
     total_joueur_2 = total_joueur_2 + 35
+    print("Joueur numéro 2, vous avez reçu un bonus de 35 points !!")
+    print()
+else:
+    if nb_joueurs == 2:
+        print("Joueur numéro 2, vous n'avez pas de bonus de points !")
+        print()
+sleep(2)
+
+
 
 if nb_joueurs == 1: #Si il y a 1 joueur,
     total()
