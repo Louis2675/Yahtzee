@@ -132,40 +132,45 @@ def est_full(mains_joueurs): #Fonction qui retourne si une main admet un "full"
 
 
 def est_petite_suite(mains_joueurs):
-    trier_des(mains_joueurs)
-    k = 1
+    i = 1
     j = 2
-    while k < 4: # Pour les quatres premiers dés
-        if mains_joueurs[k] - 1 == mains_joueurs[k - 1]: # Si element precedent vaut valeur element actuel moins 1 
+    a = 0
+    while i <= 4: # Pour les quatres premiers dés
+        if a < 1:
+            if mains_joueurs[i] - 1 != mains_joueurs[i - 1]: # Permet de laisser une erreur possible au cas ou on aurait une main = [1,2,3,3,4] car on regarde les chiffres qui se suivent et que [i] - 1 != [i - 1] avec i = 3
+                petite_suite = True
+                a = a + 1
+                i = i + 1
+        if mains_joueurs[i] - 1 == mains_joueurs[i - 1]: # Si élément précédent vaut valeur élément actuel moins 1
             petite_suite = True
-            k = k + 1 # Verifier l'element suivant
+            i = i + 1 # Vérifier l'élément suivant
         else: 
             petite_suite = False
-            k = 4 # Stopper, forcement pas une suite
+            i = 5 # Stopper, forcément pas une suite
+
     if petite_suite == True:
-            return petite_suite
+        return petite_suite
     else:
-        while j < 5: # Ainsi, on fait de meme pour les quatres derniers dés
+        while j <= 4: # Ainsi, on fait de même pour les quatres derniers dés
             if mains_joueurs[j] - 1 == mains_joueurs[j - 1]:
                 petite_suite = True
                 j = j + 1
             else:
                 petite_suite = False
-                j = 5  
+                j = 5
     return petite_suite
 
 
 
 def est_grande_suite(mains_joueurs):
-    trier_des(mains_joueurs)
-    k = 1
-    while k < 5: # Pour toute la main
-        if mains_joueurs[k] - 1 == mains_joueurs[k - 1]: # Si element precedent vaut valeur element actuel moins 1
+    i = 1
+    while i < 5: # Pour toute la main
+        if mains_joueurs[i] - 1 == mains_joueurs[i - 1]: # Si element precedent vaut valeur element actuel moins 1
             grande_suite = True
-            k = k + 1 # On verifie pour le prochain element 
+            i = i + 1 # On verifie pour le prochain element 
         else: 
             grande_suite = False
-            k = 5 # Stopper, forcement pas une liste
+            i = 5 # Stopper, forcement pas une liste
     return grande_suite
 
 
@@ -248,5 +253,6 @@ def est_bonus(grille): # Fonction qui calcule si le total des contrats 1 à 6, s
         somme = somme + grille["{}".format(i)]
     if somme >= 63:
         bonus = True
-    else: bonus = False
+    else:
+        bonus = False
     return bonus
