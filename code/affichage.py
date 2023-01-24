@@ -11,16 +11,17 @@ def afficher_des(L): # Fonction qui affiche la main du joueur
 
 
 
-def afficher_grille(grille):
+def afficher_grille(grille): #Fonction qui permet d´afficher la grille du joueur
     i = 0
     for key, value in grille.items():
-        i += 1
+        i = i + 1
         if value != -1:
-            print("Contrat n° {} ({}) : {}".format(i, key, value))
+            print("Contrat n° {} ({}) : {}".format(i, key, value)) #Permet de mettre la valeur du contrat si elle différente de -1
         else: 
             print("Contrat n° {} ({}) :".format(i, key))
 
 
+#En dessous = fonctions qui permettent d´afficher des messages/informations
 
 def bienvenue():
     print("""
