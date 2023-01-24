@@ -5,12 +5,12 @@ from time import sleep
 
 
 
-main_joueur_1 = [0, 0, 0, 0, 0] #Définit la liste de la main du joueur numéro 1
-main_joueur_2 = [0, 0, 0, 0, 0] #Définit la liste de la main du joueur numéro 2
+main_joueur_1 = [0, 0, 0, 0, 0] #Définit la liste de la main du joueur (numéro 1)
+main_joueur_2 = [0, 0, 0, 0, 0]
 mains_joueurs = []
 
-grille_joueur_1 = creer_grille() #Créé et définit la grille du joueur numéro 1
-grille_joueur_2 = creer_grille() #Créé et définit la grille du joueur numéro 2
+grille_joueur_1 = creer_grille() #Créé et définit la grille du joueur (numéro 1)
+grille_joueur_2 = creer_grille()
 grilles_joueurs = 0
 
 relance = [0, 0, 0, 0, 0]
@@ -53,23 +53,23 @@ while nb_tours != 13 * nb_joueurs: #Tant que le nombre de tours est différent d
     afficher_grille(grilles_joueurs) #Ré-affiche la grille avec le contrat validé
     sleep(2)
     main_joueur_1 = [0, 0, 0, 0, 0] #Re-définit la liste de la main du joueur numéro 1 pour pouvoir relancer les dés au tour suivant
-    main_joueur_2 = [0, 0, 0, 0, 0] #Re-définit la liste de la main du joueur numéro 2 pour pouvoir relancer les dés au tour suivant
+    main_joueur_2 = [0, 0, 0, 0, 0]
 
 
 
-total_joueur_1 = total_grille(grille_joueur_1) #Calcule le total de la grille du joueur 1
-total_joueur_2 = total_grille(grille_joueur_2) #Calcule le total de la grille du joueur 2
+total_joueur_1 = total_grille(grille_joueur_1) #Calcule le total de la grille du joueur (numéro 1)
+total_joueur_2 = total_grille(grille_joueur_2)
 
 
 
-if est_bonus(grille_joueur_1): #Si le total des 6 premiers contrats du joueur numéro 1 permet de donner un bonus,
-    total_joueur_1 = total_joueur_1 + 35 #On rajoute le bonus au total du joueur numéro 1
-if est_bonus(grille_joueur_2): #Si le total des 6 premiers contrats du joueur numéro 2 permet de donner un bonus,
-    total_joueur_2 = total_joueur_2 + 35 #On rajoute le bonus au total du joueur numéro 2
+if est_bonus(grille_joueur_1): #Si la fonction "est_bonus" retourne True,
+    total_joueur_1 = total_joueur_1 + 35 #On rajoute le bonus au total du joueur (numéro 1)
+if est_bonus(grille_joueur_2):
+    total_joueur_2 = total_joueur_2 + 35
 
 if nb_joueurs == 1: #Si il y a 1 joueur,
     total()
-    print("Votre total est de :", total_joueur_1) #Affiche le total du joueur numéro 1
+    print("Votre total est de :", total_joueur_1) #Affiche le total du joueur (numéro 1)
     print()
 else: #Sinon,
     if total_joueur_1 > total_joueur_2: #Si le joueur numéro 1 a plus de points,
